@@ -1,10 +1,11 @@
-
 export interface User {
   id: string;
   name: string;
   email: string;
   business: Business;
   role: 'user' | 'admin';
+  dataCollection?: DataCollection;
+  creditAssessment?: CreditAssessment;
 }
 
 export interface Business {
@@ -15,6 +16,21 @@ export interface Business {
   annualRevenue?: number;
   address?: string;
   taxId?: string;
+}
+
+export interface DataCollection {
+  billsUploaded: boolean;
+  transactionsConnected: boolean;
+  walletConnected: boolean;
+  completedAt?: string;
+}
+
+export interface CreditAssessment {
+  eligible: boolean;
+  maxLoanAmount: number;
+  riskScore: number;
+  interestRate: number;
+  completedAt: string;
 }
 
 export interface Loan {

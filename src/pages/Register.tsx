@@ -8,10 +8,21 @@ const Register: React.FC = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // If user is already logged in, redirect to dashboard
+  // If user is already logged in, redirect to onboarding or dashboard
   React.useEffect(() => {
     if (isAuthenticated) {
-      navigate('/dashboard');
+      // Check if the user has completed data collection
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        const user = JSON.parse(userData);
+        if (user.dataCollection && user.dataCollection.completedAt) {
+          navigate('/dashboard');
+        } else {
+          navigate('/onboarding');
+        }
+      } else {
+        navigate('/onboarding');
+      }
     }
   }, [isAuthenticated, navigate]);
 

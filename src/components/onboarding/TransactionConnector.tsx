@@ -1,0 +1,96 @@
+
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { CreditCard, CheckCircle } from 'lucide-react';
+
+interface TransactionConnectorProps {
+  onComplete: () => void;
+}
+
+const TransactionConnector: React.FC<TransactionConnectorProps> = ({ onComplete }) => {
+  const [selectedBank, setSelectedBank] = useState<string | null>(null);
+  const [connecting, setConnecting] = useState(false);
+
+  const banks = [
+    { id: 'bank_of_america', name: 'Bank of America', logo: '🏦' },
+    { id: 'chase', name: 'Chase', logo: '🏦' },
+    { id: 'wells_fargo', name: 'Wells Fargo', logo: '🏦' },
+    { id: 'citi', name: 'Citibank', logo: '🏦' },
+    { id: 'td_bank', name: 'TD Bank', logo: '🏦' },
+    { id: 'capital_one', name: 'Capital One', logo: '🏦' }
+  ];
+
+  const handleBankSelect = (bankId: string) => {
+    setSelectedBank(bankId);
+  };
+
+  const handleConnect = async () => {
+    if (!selectedBank) return;
+    
+    setConnecting(true);
+    try {
+      // Simulate API call to connect to bank
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      onComplete();
+    } catch (error) {
+      console.error('Error connecting to bank:', error);
+    } finally {
+      setConnecting(false);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-medium">Connect Your Bank Account</h3>
+        <p className="text-sm text-muted-foreground">
+          Connect your business bank account to share transaction history.
+          We use secure banking APIs and never store your login credentials.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {banks.map(bank => (
+          <Card 
+            key={bank.id} 
+            className={`cursor-pointer hover:border-bizblue-400 transition-colors ${
+              selectedBank === bank.id ? 'border-2 border-bizblue-500' : ''
+            }`}
+            onClick={() => handleBankSelect(bank.id)}
+          >
+            <CardContent className="p-4 flex flex-col items-center justify-center text-center">
+              <div className="text-2xl mb-2">{bank.logo}</div>
+              <div className="text-sm font-medium">{bank.name}</div>
+              {selectedBank === bank.id && (
+                <CheckCircle className="h-4 w-4 text-green-500 mt-2" />
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="flex flex-col space-y-2">
+        <Button
+          onClick={handleConnect}
+          className="bg-bizblue-600 hover:bg-bizblue-700 mt-2"
+          disabled={!selectedBank || connecting}
+        >
+          {connecting ? (
+            <>Connecting to Bank...</>
+          ) : (
+            <>
+              <CreditCard className="mr-2 h-4 w-4" />
+              Connect Bank Account
+            </>
+          )}
+        </Button>
+        <p className="text-xs text-gray-500 text-center">
+          By connecting your account, you're allowing read-only access to your transaction history.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default TransactionConnector;

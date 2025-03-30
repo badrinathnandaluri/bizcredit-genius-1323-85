@@ -43,7 +43,7 @@ const RegisterForm: React.FC = () => {
     
     try {
       await register(email, password, name, businessName);
-      navigate('/onboarding');
+      navigate('/onboarding'); // Changed from '/dashboard' to '/onboarding'
     } catch (error) {
       console.error('Registration failed:', error);
     } finally {
