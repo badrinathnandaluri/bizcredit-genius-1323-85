@@ -99,7 +99,12 @@ const RiskFactorItem: React.FC<RiskFactorItemProps> = ({ factor }) => {
           {factor.impact > 0 ? "Positive" : "Negative"} Impact
         </span>
       </div>
-      <Progress value={impactPercentage} className="h-1.5" indicatorClassName={impactColor} />
+      <div className="relative w-full h-1.5 bg-secondary rounded-full overflow-hidden">
+        <div 
+          className={`absolute top-0 left-0 h-full ${impactColor}`} 
+          style={{ width: `${impactPercentage}%` }}
+        />
+      </div>
       <p className="text-xs text-muted-foreground">{factor.description}</p>
     </div>
   );

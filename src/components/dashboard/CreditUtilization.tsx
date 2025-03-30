@@ -36,11 +36,16 @@ const CreditUtilization: React.FC<CreditUtilizationProps> = ({
             <span>${totalCredit.toLocaleString()} Total Credit</span>
           </div>
           
-          <Progress 
-            value={utilizationPercentage} 
-            className="h-2" 
-            indicatorClassName={progressColor}
-          />
+          <div className="relative w-full">
+            <Progress 
+              value={utilizationPercentage} 
+              className="h-2" 
+            />
+            <div 
+              className={`h-2 absolute top-0 left-0 rounded-full ${progressColor}`} 
+              style={{ width: `${utilizationPercentage}%` }}
+            />
+          </div>
           
           <div className="flex justify-between items-center">
             <div>
