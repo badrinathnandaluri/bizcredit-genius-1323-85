@@ -13,7 +13,7 @@ import { Check, CreditCard, FileText, Wallet } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const Onboarding: React.FC = () => {
-  const { user } = useAuth();
+  const { user, updateUserData } = useAuth();
   const navigate = useNavigate();
   const [step, setStep] = useState<string>('bills');
   const [progress, setProgress] = useState<number>(0);
@@ -65,12 +65,25 @@ const Onboarding: React.FC = () => {
       // Simulate API call to process the collected data through ML models
       await new Promise(resolve => setTimeout(resolve, 2000));
 
+      // Update the user's data collection completion status
+      if (user) {
+        const dataCollection = {
+          billsUploaded: billsComplete,
+          transactionsConnected: transactionsComplete,
+          walletConnected: walletComplete,
+          completedAt: new Date().toISOString()
+        };
+
+        // Update the user object in context/localStorage
+        updateUserData({ dataCollection });
+      }
+
       toast({
         title: "Data analysis complete",
-        description: "We've analyzed your financial data using our AI models. Redirecting to your assessment."
+        description: "We've analyzed your financial data using our AI models. Redirecting to your dashboard."
       });
 
-      navigate('/assessment'); // Navigate to the loan assessment page
+      navigate('/dashboard'); // Navigate to the dashboard instead of assessment
     } catch (error) {
       console.error('Error during data processing:', error);
       toast({
