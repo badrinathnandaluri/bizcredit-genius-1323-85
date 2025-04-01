@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, CheckCircle, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useAuth } from '@/context/AuthContext';
 
@@ -10,7 +9,6 @@ const Index: React.FC = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // If user is already logged in, redirect to dashboard
   React.useEffect(() => {
     if (isAuthenticated) {
       navigate('/dashboard');
@@ -23,7 +21,7 @@ const Index: React.FC = () => {
       <section className="relative bg-bizblue-900 text-white">
         <div className="max-w-6xl mx-auto px-4 py-20 md:py-28">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 z-10 relative">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 AI-Powered Business Funding for <span className="text-bizblue-300">Modern Companies</span>
               </h1>
@@ -50,48 +48,16 @@ const Index: React.FC = () => {
                 </Button>
               </div>
             </div>
-            <div className="hidden md:block">
-              <div className="relative">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-bizblue-400 to-purple-500 rounded-lg blur opacity-30"></div>
-                <div className="relative bg-white p-6 rounded-lg shadow-xl">
-                  <div className="space-y-6">
-                    <div className="flex items-center space-x-4 pb-4 border-b">
-                      <div className="w-12 h-12 rounded-full bg-bizblue-100 flex items-center justify-center">
-                        <span className="text-bizblue-600 font-bold">AI</span>
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-gray-900">Credit Risk Score</h3>
-                        <div className="flex items-center mt-1">
-                          <div className="h-2 w-full bg-gray-200 rounded-full">
-                            <div className="h-2 bg-green-500 rounded-full" style={{width: "78%"}}></div>
-                          </div>
-                          <span className="ml-2 text-gray-900 font-bold">78</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-3 text-gray-800">
-                      <div className="flex justify-between">
-                        <span>Loan Amount</span>
-                        <span className="font-bold">$50,000</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Term</span>
-                        <span className="font-bold">12 months</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Interest Rate</span>
-                        <span className="font-bold">8.5%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Monthly Payment</span>
-                        <span className="font-bold">$4,375</span>
-                      </div>
-                    </div>
-                    <Button className="w-full bg-bizblue-600 hover:bg-bizblue-700">
-                      Accept Offer
-                    </Button>
-                  </div>
-                </div>
+            <div className="hidden md:block relative">
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a1" 
+                  alt="Laptop with financial data" 
+                  className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-20"
+                />
+              </div>
+              <div className="relative z-10 bg-white/10 rounded-lg p-6 backdrop-blur-sm">
+                <p className="text-white text-center">Empowering businesses with AI-driven financial solutions</p>
               </div>
             </div>
           </div>
