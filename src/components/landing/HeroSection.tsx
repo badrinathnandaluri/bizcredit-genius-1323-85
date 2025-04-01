@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
                 onClick={() => navigate('/login')}
                 size="lg" 
                 variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-bizblue-900"
+                className="border-white text-bizblue-300 hover:bg-white hover:text-bizblue-900"
               >
                 Log In
               </Button>
