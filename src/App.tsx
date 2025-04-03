@@ -14,9 +14,9 @@ import Onboarding from "./pages/Onboarding";
 import Dashboard from "./pages/Dashboard";
 import ApplyLoan from "./pages/ApplyLoan";
 import LoanAssessment from "./pages/LoanAssessment";
-import Loans from "./pages/Loans"; // We'll create this
-import Transactions from "./pages/Transactions"; // We'll create this
-import Analytics from "./pages/Analytics"; // We'll create this
+import Loans from "./pages/Loans";
+import Transactions from "./pages/Transactions";
+import Analytics from "./pages/Analytics";
 import AdminLoans from "./pages/AdminLoans";
 import NotFound from "./pages/NotFound";
 
