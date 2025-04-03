@@ -159,7 +159,7 @@ const rlOptimize = (defaultProb: number, cashFlow: number): { amount: number; ra
   const optimalRate = baseRate + riskPremium;
   
   return {
-    amount: Math.max(5000, optimalAmount), // Minimum loan amount of 5000
+    amount: Math.max(5000, optimalAmount), // Minimum loan amount of 5000 rupees
     rate: Math.min(20, Math.max(8, optimalRate)) // Rate between 8% and 20%
   };
 };
