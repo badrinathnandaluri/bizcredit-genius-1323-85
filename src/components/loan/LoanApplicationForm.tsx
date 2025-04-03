@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -30,8 +29,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 const loanFormSchema = z.object({
   loanAmount: z.string()
     .refine(val => !isNaN(Number(val)), { message: 'Amount must be a number' })
-    .refine(val => Number(val) >= 5000, { message: 'Minimum loan amount is $5,000' })
-    .refine(val => Number(val) <= 500000, { message: 'Maximum loan amount is $500,000' }),
+    .refine(val => Number(val) >= 5000, { message: 'Minimum loan amount is ₹5,000' })
+    .refine(val => Number(val) <= 500000, { message: 'Maximum loan amount is ₹500,000' }),
   loanTerm: z.string(),
   loanPurpose: z.string().min(1, { message: 'Please select a loan purpose' }),
   businessDescription: z.string().min(50, { message: 'Please provide at least 50 characters' }),
@@ -96,7 +95,7 @@ const LoanApplicationForm: React.FC = () => {
                         />
                       </div>
                       <div className="flex items-center">
-                        <span className="text-muted-foreground mr-2">$</span>
+                        <span className="text-muted-foreground mr-2">₹</span>
                         <Input
                           {...field}
                           onChange={(e) => {
@@ -111,7 +110,7 @@ const LoanApplicationForm: React.FC = () => {
                     </div>
                   </FormControl>
                   <FormDescription>
-                    Loans available from $5,000 to $500,000
+                    Loans available from ₹5,000 to ₹500,000
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

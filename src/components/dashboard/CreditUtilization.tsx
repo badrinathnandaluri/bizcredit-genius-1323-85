@@ -32,8 +32,8 @@ const CreditUtilization: React.FC<CreditUtilizationProps> = ({
       <CardContent>
         <div className="space-y-3">
           <div className="flex justify-between items-center text-sm">
-            <span>${availableCredit.toLocaleString()} Available</span>
-            <span>${totalCredit.toLocaleString()} Total Credit</span>
+            <span>₹{availableCredit.toLocaleString()} Available</span>
+            <span>₹{totalCredit.toLocaleString()} Total Credit</span>
           </div>
           
           <div className="relative w-full">
@@ -55,7 +55,7 @@ const CreditUtilization: React.FC<CreditUtilizationProps> = ({
             
             <div className="text-right">
               <p className="text-xs text-muted-foreground">Available to Withdraw</p>
-              <p className="text-lg font-bold">${availableCredit.toLocaleString()}</p>
+              <p className="text-lg font-bold">₹{availableCredit.toLocaleString()}</p>
             </div>
           </div>
         </div>

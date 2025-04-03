@@ -26,7 +26,7 @@ const RecentApplications: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-medium">
-                    ${loan.amount.toLocaleString()} / {loan.term} months
+                    ₹{loan.amount.toLocaleString()} / {loan.term} months
                   </p>
                   <p className="text-xs text-muted-foreground">
                     {format(new Date(loan.createdAt), 'MMM dd, yyyy')}

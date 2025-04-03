@@ -75,8 +75,7 @@ const PaymentItem: React.FC<PaymentItemProps> = ({ payment }) => {
         </div>
         
         <div className="flex items-center">
-          <DollarSign className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-bold">{payment.amount.toLocaleString()}</span>
+          <span className="text-sm font-bold">₹{payment.amount.toLocaleString()}</span>
         </div>
       </div>
       

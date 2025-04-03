@@ -39,7 +39,7 @@ const LoanApplicationsTable: React.FC<LoanApplicationsTableProps> = ({ loans, on
           {loans.map((loan) => (
             <TableRow key={loan.id}>
               <TableCell className="font-medium">{loan.id}</TableCell>
-              <TableCell>${loan.amount.toLocaleString()}</TableCell>
+              <TableCell>₹{loan.amount.toLocaleString()}</TableCell>
               <TableCell>{loan.term} months</TableCell>
               <TableCell>{format(new Date(loan.createdAt), 'MMM dd, yyyy')}</TableCell>
               <TableCell>

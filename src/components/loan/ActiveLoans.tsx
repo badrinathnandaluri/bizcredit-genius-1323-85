@@ -60,7 +60,7 @@ const ActiveLoanCard: React.FC<ActiveLoanCardProps> = ({ loan }) => {
       <div className="flex flex-wrap md:flex-nowrap justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2">
-            <h3 className="font-medium">${loan.amount.toLocaleString()}</h3>
+            <h3 className="font-medium">₹{loan.amount.toLocaleString()}</h3>
             <Badge className="bg-bizblue-500 hover:bg-bizblue-600">
               {loan.term} months
             </Badge>
@@ -82,7 +82,7 @@ const ActiveLoanCard: React.FC<ActiveLoanCardProps> = ({ loan }) => {
         <div className="flex flex-col space-y-3 sm:items-end">
           <div className="text-right">
             <div className="text-sm text-muted-foreground">Next Payment</div>
-            <div className="font-medium">${loan.nextPaymentAmount?.toLocaleString()}</div>
+            <div className="font-medium">₹{loan.nextPaymentAmount?.toLocaleString()}</div>
             <div className="text-xs">
               Due {loan.nextPaymentDate ? format(new Date(loan.nextPaymentDate), 'MMM dd, yyyy') : 'N/A'}
             </div>
@@ -101,7 +101,7 @@ const ActiveLoanCard: React.FC<ActiveLoanCardProps> = ({ loan }) => {
         </div>
         <div>
           <div className="text-muted-foreground text-xs">Remaining Principal</div>
-          <div>${loan.remainingAmount?.toLocaleString()}</div>
+          <div>₹{loan.remainingAmount?.toLocaleString()}</div>
         </div>
         <div>
           <div className="text-muted-foreground text-xs">Loan ID</div>
