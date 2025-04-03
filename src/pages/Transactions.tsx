@@ -48,12 +48,12 @@ const Transactions: React.FC = () => {
   });
 
   // Calculate total inflow and outflow
-  const totalCredit = filteredTransactions
-    .filter(t => t.type === 'credit')
+  const totalInflow = filteredTransactions
+    .filter(t => t.type === 'deposit')
     .reduce((sum, t) => sum + t.amount, 0);
   
-  const totalDebit = filteredTransactions
-    .filter(t => t.type === 'debit')
+  const totalOutflow = filteredTransactions
+    .filter(t => ['payment', 'fee', 'withdrawal'].includes(t.type))
     .reduce((sum, t) => sum + t.amount, 0);
 
   return (
@@ -86,7 +86,7 @@ const Transactions: React.FC = () => {
           <CardContent>
             <div className="flex items-center">
               <ArrowDown className="h-5 w-5 text-green-500 mr-2" />
-              <div className="text-2xl font-bold text-green-600">₹{totalCredit.toLocaleString()}</div>
+              <div className="text-2xl font-bold text-green-600">₹{totalInflow.toLocaleString()}</div>
             </div>
           </CardContent>
         </Card>
@@ -98,7 +98,7 @@ const Transactions: React.FC = () => {
           <CardContent>
             <div className="flex items-center">
               <ArrowUp className="h-5 w-5 text-red-500 mr-2" />
-              <div className="text-2xl font-bold text-red-600">₹{totalDebit.toLocaleString()}</div>
+              <div className="text-2xl font-bold text-red-600">₹{totalOutflow.toLocaleString()}</div>
             </div>
           </CardContent>
         </Card>
@@ -121,8 +121,10 @@ const Transactions: React.FC = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Transactions</SelectItem>
-            <SelectItem value="credit">Income</SelectItem>
-            <SelectItem value="debit">Expenses</SelectItem>
+            <SelectItem value="deposit">Income</SelectItem>
+            <SelectItem value="payment">Payments</SelectItem>
+            <SelectItem value="fee">Fees</SelectItem>
+            <SelectItem value="withdrawal">Withdrawals</SelectItem>
           </SelectContent>
         </Select>
         
@@ -165,7 +167,7 @@ const Transactions: React.FC = () => {
                         <div className="p-1.5 rounded-full bg-gray-100 mr-3">
                           {transaction.category === 'loan' ? (
                             <Banknote className="h-4 w-4 text-bizblue-600" />
-                          ) : transaction.type === 'credit' ? (
+                          ) : transaction.type === 'deposit' ? (
                             <ArrowDown className="h-4 w-4 text-green-500" />
                           ) : (
                             <CreditCard className="h-4 w-4 text-gray-500" />
@@ -183,9 +185,9 @@ const Transactions: React.FC = () => {
                       </span>
                     </td>
                     <td className={`py-3 text-right font-medium ${
-                      transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'
+                      transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
                     }`}>
-                      {transaction.type === 'credit' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
+                      {transaction.type === 'deposit' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
                     </td>
                   </tr>
                 ))}

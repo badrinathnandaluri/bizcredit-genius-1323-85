@@ -72,7 +72,9 @@ export const mockTransactions: Transaction[] = [
     amount: 25000,
     type: 'deposit',
     description: 'Loan disbursement',
-    date: '2023-11-16T10:30:00Z'
+    date: '2023-11-16T10:30:00Z',
+    category: 'loan',
+    account: 'Business Account'
   },
   {
     id: 'txn-2',
@@ -80,7 +82,9 @@ export const mockTransactions: Transaction[] = [
     amount: 2208.33,
     type: 'payment',
     description: 'Loan payment',
-    date: '2023-12-16T14:25:00Z'
+    date: '2023-12-16T14:25:00Z',
+    category: 'loan repayment',
+    account: 'Business Account'
   },
   {
     id: 'txn-3',
@@ -88,7 +92,9 @@ export const mockTransactions: Transaction[] = [
     amount: 2208.33,
     type: 'payment',
     description: 'Loan payment',
-    date: '2024-01-16T09:15:00Z'
+    date: '2024-01-16T09:15:00Z',
+    category: 'loan repayment',
+    account: 'Business Account'
   },
   {
     id: 'txn-4',
@@ -96,7 +102,9 @@ export const mockTransactions: Transaction[] = [
     amount: 2208.33,
     type: 'payment',
     description: 'Loan payment',
-    date: '2024-02-16T11:45:00Z'
+    date: '2024-02-16T11:45:00Z',
+    category: 'loan repayment',
+    account: 'Business Account'
   },
   {
     id: 'txn-5',
@@ -104,7 +112,9 @@ export const mockTransactions: Transaction[] = [
     amount: 2208.33,
     type: 'payment',
     description: 'Loan payment',
-    date: '2024-03-16T16:20:00Z'
+    date: '2024-03-16T16:20:00Z',
+    category: 'loan repayment',
+    account: 'Business Account'
   },
   {
     id: 'txn-6',
@@ -112,7 +122,9 @@ export const mockTransactions: Transaction[] = [
     amount: 15,
     type: 'fee',
     description: 'Late payment fee',
-    date: '2024-03-18T10:10:00Z'
+    date: '2024-03-18T10:10:00Z',
+    category: 'fee',
+    account: 'Business Account'
   }
 ];
 

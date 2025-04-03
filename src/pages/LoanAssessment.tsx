@@ -20,7 +20,7 @@ const LoanAssessment: React.FC = () => {
     maxLoanAmount: creditAssessment.maxLoanAmount,
     suggestedInterestRate: creditAssessment.interestRate,
     recommendation: creditAssessment.eligible 
-      ? `Based on our LSTM analysis, you are eligible for a loan up to $${creditAssessment.maxLoanAmount.toLocaleString()}`
+      ? `Based on our LSTM analysis, you are eligible for a loan up to ₹${creditAssessment.maxLoanAmount.toLocaleString()}`
       : "Based on our LSTM analysis, we recommend improving your financial profile before applying for a loan",
     factors: [
       {
@@ -90,7 +90,7 @@ const LoanAssessment: React.FC = () => {
             <div className="space-y-6">
               <div className="bg-bizblue-50 p-4 rounded-lg text-center">
                 <div className="text-4xl font-bold text-bizblue-700">
-                  ${riskAssessment.maxLoanAmount.toLocaleString()}
+                  ₹{riskAssessment.maxLoanAmount.toLocaleString()}
                 </div>
                 <div className="text-sm text-muted-foreground mt-1">RL-optimized maximum amount</div>
               </div>
@@ -106,11 +106,11 @@ const LoanAssessment: React.FC = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Monthly Payment</span>
-                  <span className="font-medium">${monthlyPayment.toFixed(2)}</span>
+                  <span className="font-medium">₹{monthlyPayment.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Total Repayment</span>
-                  <span className="font-medium">${totalRepayment.toFixed(2)}</span>
+                  <span className="font-medium">₹{totalRepayment.toFixed(2)}</span>
                 </div>
               </div>
             </div>
