@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { toast } from '@/hooks/use-toast';
 
 interface BillUploaderProps {
-  onComplete: () => void;
+  onComplete: (files: File[]) => void;
 }
 
 const BillUploader: React.FC<BillUploaderProps> = ({ onComplete }) => {
@@ -63,7 +62,7 @@ const BillUploader: React.FC<BillUploaderProps> = ({ onComplete }) => {
         title: "Files uploaded successfully",
         description: "Your utility bill data has been uploaded for analysis."
       });
-      onComplete();
+      onComplete(files);
     } catch (error) {
       console.error('Error uploading files:', error);
       toast({

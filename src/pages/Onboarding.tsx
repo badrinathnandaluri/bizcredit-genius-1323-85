@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -11,6 +10,7 @@ import WalletConnector from '@/components/onboarding/WalletConnector';
 import { Progress } from '@/components/ui/progress';
 import { Check, CreditCard, FileText, Wallet } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { processCreditAssessment } from '@/services/ml/creditScoreModel';
 
 const Onboarding: React.FC = () => {
   const { user, updateUserData } = useAuth();
@@ -21,6 +21,7 @@ const Onboarding: React.FC = () => {
   const [transactionsComplete, setTransactionsComplete] = useState<boolean>(false);
   const [walletComplete, setWalletComplete] = useState<boolean>(false);
   const [processing, setProcessing] = useState<boolean>(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const calculateProgress = () => {
     let completed = 0;
@@ -30,7 +31,8 @@ const Onboarding: React.FC = () => {
     return (completed / 3) * 100;
   };
 
-  const handleBillsComplete = () => {
+  const handleBillsComplete = (files: File[]) => {
+    setUploadedFiles(files);
     setBillsComplete(true);
     setProgress(calculateProgress());
     setStep('transactions');
@@ -62,9 +64,18 @@ const Onboarding: React.FC = () => {
   const handleSubmit = async () => {
     setProcessing(true);
     try {
-      // Simulate API call to process the collected data through ML models
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
+      toast({
+        title: "Processing your data",
+        description: "Our AI is analyzing your financial information..."
+      });
+      
+      // Process data through our ML model
+      const assessmentResult = await processCreditAssessment(
+        uploadedFiles,
+        transactionsComplete,
+        walletComplete
+      );
+      
       // Update the user's data collection completion status
       if (user) {
         const dataCollection = {
@@ -73,17 +84,30 @@ const Onboarding: React.FC = () => {
           walletConnected: walletComplete,
           completedAt: new Date().toISOString()
         };
+        
+        // Store the assessment results
+        const creditAssessment = {
+          eligible: assessmentResult.riskScore >= 40,
+          maxLoanAmount: assessmentResult.maxLoanAmount,
+          riskScore: assessmentResult.riskScore,
+          interestRate: assessmentResult.interestRate,
+          completedAt: new Date().toISOString()
+        };
 
         // Update the user object in context/localStorage
-        updateUserData({ dataCollection });
+        updateUserData({ 
+          dataCollection,
+          creditAssessment
+        });
       }
 
       toast({
-        title: "Data analysis complete",
-        description: "We've analyzed your financial data using our AI models. Redirecting to your dashboard."
+        title: "ML Analysis complete",
+        description: "We've analyzed your financial data using our AI models. Redirecting to your assessment."
       });
 
-      navigate('/dashboard'); // Navigate to the dashboard instead of assessment
+      // Navigate to assessment to show the results
+      navigate('/assessment');
     } catch (error) {
       console.error('Error during data processing:', error);
       toast({
@@ -116,7 +140,7 @@ const Onboarding: React.FC = () => {
             <h1 className="text-2xl font-bold mb-2">Complete Your Business Profile</h1>
             <p className="text-gray-600">
               We need to collect some financial data to assess your eligibility for business credit.
-              This helps our AI provide you with the most accurate loan offers.
+              This helps our ML model provide you with the most accurate loan offers.
             </p>
           </div>
 
@@ -164,7 +188,7 @@ const Onboarding: React.FC = () => {
                     className="w-full bg-bizblue-600 hover:bg-bizblue-700"
                     disabled={processing}
                   >
-                    {processing ? 'Processing Your Data...' : 'Complete & Process Data'}
+                    {processing ? 'ML Model Processing Your Data...' : 'Run AI Analysis'}
                   </Button>
                 </CardFooter>
               )}
