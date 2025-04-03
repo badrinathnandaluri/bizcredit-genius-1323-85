@@ -37,7 +37,7 @@
 
     --sidebar-background: 210 60% 15%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary: 45 100% 60%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 210 30% 20%;
     --sidebar-accent-foreground: 0 0% 100%;
@@ -76,7 +76,7 @@
 
     --sidebar-background: 210 60% 10%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 210 100% 60%;
+    --sidebar-primary: 45 100% 70%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 210 30% 15%;
     --sidebar-accent-foreground: 0 0% 100%;
@@ -92,20 +92,65 @@
 
   body {
     @apply bg-background text-foreground;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23bae0fd' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Make inputs and selects look consistent */
+  input, select, textarea {
+    @apply rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-bizblue-400 focus:border-transparent transition-colors;
+  }
+  
+  /* Remove the default focus ring around buttons */
+  button:focus {
+    @apply outline-none;
+  }
+  
+  /* Style scrollbars for a more refined look */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
   }
 }
 
 /* Custom styles for the lending platform */
 @layer components {
   .stat-card {
-    @apply p-6 rounded-lg border bg-white shadow-sm hover:shadow-md transition-shadow;
+    @apply p-6 rounded-lg border bg-white shadow-md hover:shadow-lg transition-shadow bg-opacity-95 backdrop-blur-sm;
   }
   
   .dashboard-card {
-    @apply p-6 rounded-xl border bg-white shadow-sm hover:shadow-md transition-all;
+    @apply p-6 rounded-xl border bg-white shadow-md hover:shadow-lg transition-all bg-opacity-95 backdrop-blur-sm;
   }
   
   .form-container {
-    @apply max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md;
+    @apply max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg bg-opacity-95 backdrop-blur-sm;
   }
+  
+  .gradient-heading {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-bizblue-700 to-bizblue-500;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px];
+  }
+  
+  .glass-effect {
+    @apply bg-white bg-opacity-80 backdrop-blur-sm;
+  }
+}
+
+/* Progress indicator style override */
+.progress {
+  @apply overflow-hidden rounded-full bg-gray-200;
+}
+
+.progress div {
+  @apply h-full bg-gradient-to-r from-bizblue-500 to-bizblue-700 transition-all duration-500 ease-out;
 }

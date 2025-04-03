@@ -12,13 +12,14 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
 
+  // Updated with Indian digital payment methods
   const wallets = [
+    { id: 'phonepe', name: 'PhonePe', logo: '💳' },
+    { id: 'googlepay', name: 'Google Pay', logo: '💳' },
+    { id: 'paytm', name: 'Paytm', logo: '💳' },
     { id: 'paypal', name: 'PayPal', logo: '💳' },
-    { id: 'stripe', name: 'Stripe', logo: '💳' },
-    { id: 'venmo', name: 'Venmo', logo: '💳' },
-    { id: 'square', name: 'Square', logo: '💳' },
-    { id: 'cashapp', name: 'Cash App', logo: '💳' },
-    { id: 'apple_pay', name: 'Apple Pay', logo: '💳' }
+    { id: 'amazonpay', name: 'Amazon Pay', logo: '💳' },
+    { id: 'bhim', name: 'BHIM UPI', logo: '💳' }
   ];
 
   const handleWalletSelect = (walletId: string) => {
@@ -54,8 +55,8 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
         {wallets.map(wallet => (
           <Card 
             key={wallet.id} 
-            className={`cursor-pointer hover:border-bizblue-400 transition-colors ${
-              selectedWallet === wallet.id ? 'border-2 border-bizblue-500' : ''
+            className={`cursor-pointer hover:border-bizblue-400 transition-colors shadow-md hover:shadow-lg ${
+              selectedWallet === wallet.id ? 'border-2 border-bizblue-500 bg-gradient-to-br from-blue-50 to-white' : 'bg-white'
             }`}
             onClick={() => handleWalletSelect(wallet.id)}
           >
@@ -73,7 +74,7 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
       <div className="flex flex-col space-y-2">
         <Button
           onClick={handleConnect}
-          className="bg-bizblue-600 hover:bg-bizblue-700 mt-2"
+          className="bg-gradient-to-r from-bizblue-600 to-bizblue-700 hover:from-bizblue-700 hover:to-bizblue-800 mt-2 shadow-md"
           disabled={!selectedWallet || connecting}
         >
           {connecting ? (

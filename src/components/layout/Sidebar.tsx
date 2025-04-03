@@ -38,8 +38,8 @@ const Sidebar: React.FC = () => {
         { "-translate-x-full": !collapsed },
         "md:translate-x-0 md:relative md:z-0"
       )}>
-        <div className="p-4 flex items-center justify-center border-b border-sidebar-border h-16">
-          <h1 className="text-xl font-bold text-white">BizCredit<span className="text-bizblue-300">Genius</span></h1>
+        <div className="p-4 flex items-center justify-center border-b border-sidebar-border h-16 bg-gradient-to-r from-bizblue-800 to-bizblue-600">
+          <h1 className="text-xl font-bold text-white">Loan<span className="text-amber-300">lytic</span></h1>
         </div>
         
         <nav className="mt-6 px-2">

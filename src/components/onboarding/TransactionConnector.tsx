@@ -12,13 +12,14 @@ const TransactionConnector: React.FC<TransactionConnectorProps> = ({ onComplete 
   const [selectedBank, setSelectedBank] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
 
+  // Updated with Indian Banks
   const banks = [
-    { id: 'bank_of_america', name: 'Bank of America', logo: '🏦' },
-    { id: 'chase', name: 'Chase', logo: '🏦' },
-    { id: 'wells_fargo', name: 'Wells Fargo', logo: '🏦' },
-    { id: 'citi', name: 'Citibank', logo: '🏦' },
-    { id: 'td_bank', name: 'TD Bank', logo: '🏦' },
-    { id: 'capital_one', name: 'Capital One', logo: '🏦' }
+    { id: 'sbi', name: 'State Bank of India', logo: '🏦' },
+    { id: 'icici', name: 'ICICI Bank', logo: '🏦' },
+    { id: 'hdfc', name: 'HDFC Bank', logo: '🏦' },
+    { id: 'pnb', name: 'Punjab National Bank', logo: '🏦' },
+    { id: 'axis', name: 'Axis Bank', logo: '🏦' },
+    { id: 'central_bank', name: 'Central Bank of India', logo: '🏦' }
   ];
 
   const handleBankSelect = (bankId: string) => {
@@ -54,8 +55,8 @@ const TransactionConnector: React.FC<TransactionConnectorProps> = ({ onComplete 
         {banks.map(bank => (
           <Card 
             key={bank.id} 
-            className={`cursor-pointer hover:border-bizblue-400 transition-colors ${
-              selectedBank === bank.id ? 'border-2 border-bizblue-500' : ''
+            className={`cursor-pointer hover:border-bizblue-400 transition-colors shadow-md hover:shadow-lg ${
+              selectedBank === bank.id ? 'border-2 border-bizblue-500 bg-gradient-to-br from-blue-50 to-white' : 'bg-white'
             }`}
             onClick={() => handleBankSelect(bank.id)}
           >
@@ -73,7 +74,7 @@ const TransactionConnector: React.FC<TransactionConnectorProps> = ({ onComplete 
       <div className="flex flex-col space-y-2">
         <Button
           onClick={handleConnect}
-          className="bg-bizblue-600 hover:bg-bizblue-700 mt-2"
+          className="bg-gradient-to-r from-bizblue-600 to-bizblue-700 hover:from-bizblue-700 hover:to-bizblue-800 mt-2 shadow-md"
           disabled={!selectedBank || connecting}
         >
           {connecting ? (

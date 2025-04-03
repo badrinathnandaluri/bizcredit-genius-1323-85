@@ -10,10 +10,13 @@ import { AuthProvider } from "@/context/AuthContext";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Onboarding from "./pages/Onboarding"; // Add this line
+import Onboarding from "./pages/Onboarding";
 import Dashboard from "./pages/Dashboard";
 import ApplyLoan from "./pages/ApplyLoan";
 import LoanAssessment from "./pages/LoanAssessment";
+import Loans from "./pages/Loans"; // We'll create this
+import Transactions from "./pages/Transactions"; // We'll create this
+import Analytics from "./pages/Analytics"; // We'll create this
 import AdminLoans from "./pages/AdminLoans";
 import NotFound from "./pages/NotFound";
 
@@ -33,16 +36,16 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/onboarding" element={<Onboarding />} /> {/* Add this line */}
+            <Route path="/onboarding" element={<Onboarding />} />
             
             {/* Protected Routes - Inside MainLayout */}
             <Route element={<MainLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/apply" element={<ApplyLoan />} />
               <Route path="/assessment" element={<LoanAssessment />} />
-              <Route path="/loans" element={<Dashboard />} />
-              <Route path="/transactions" element={<Dashboard />} />
-              <Route path="/analytics" element={<Dashboard />} />
+              <Route path="/loans" element={<Loans />} />
+              <Route path="/transactions" element={<Transactions />} />
+              <Route path="/analytics" element={<Analytics />} />
               <Route path="/settings" element={<Dashboard />} />
               <Route path="/profile" element={<Dashboard />} />
               

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -121,24 +122,24 @@ const Onboarding: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <header className="bg-white border-b p-4">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 to-gray-100">
+      <header className="bg-gradient-to-r from-bizblue-700 to-bizblue-900 border-b p-4 shadow-md">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <a href="/" className="text-xl font-bold text-bizblue-900">
-                BizCredit<span className="text-bizblue-600">Genius</span>
+              <a href="/" className="text-xl font-bold text-white">
+                Loan<span className="text-amber-300">lytic</span>
               </a>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="flex-grow flex flex-col items-center justify-center p-4">
+      <main className="flex-grow flex flex-col items-center justify-center p-4 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGYwZjAiPjwvcmVjdD4KPC9zdmc+')]">
         <div className="w-full max-w-3xl">
           <div className="mb-6 text-center">
-            <h1 className="text-2xl font-bold mb-2">Complete Your Business Profile</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold mb-2 text-bizblue-800">Complete Your Business Profile</h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
               We need to collect some financial data to assess your eligibility for business credit.
               This helps our ML model provide you with the most accurate loan offers.
             </p>
@@ -149,26 +150,26 @@ const Onboarding: React.FC = () => {
               <span className="text-sm font-medium">Progress</span>
               <span className="text-sm font-medium">{Math.round(progress)}%</span>
             </div>
-            <Progress value={progress} className="h-2" />
+            <Progress value={progress} className="h-2 bg-gray-200 rounded-full" indicatorClassName="bg-gradient-to-r from-bizblue-500 to-bizblue-700" />
           </div>
 
           <Tabs value={step} onValueChange={setStep} className="w-full">
-            <TabsList className="grid grid-cols-3 mb-4">
-              <TabsTrigger value="bills" disabled={processing} className="flex items-center gap-2">
+            <TabsList className="grid grid-cols-3 mb-4 bg-gray-100 p-1 rounded-lg shadow-inner">
+              <TabsTrigger value="bills" disabled={processing} className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-md">
                 {billsComplete ? <Check size={16} className="text-green-500" /> : <FileText size={16} />}
                 <span className="hidden sm:inline">Utility Bills</span>
               </TabsTrigger>
-              <TabsTrigger value="transactions" disabled={processing} className="flex items-center gap-2">
+              <TabsTrigger value="transactions" disabled={processing} className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-md">
                 {transactionsComplete ? <Check size={16} className="text-green-500" /> : <CreditCard size={16} />}
                 <span className="hidden sm:inline">Transactions</span>
               </TabsTrigger>
-              <TabsTrigger value="wallet" disabled={processing} className="flex items-center gap-2">
+              <TabsTrigger value="wallet" disabled={processing} className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-md">
                 {walletComplete ? <Check size={16} className="text-green-500" /> : <Wallet size={16} />}
                 <span className="hidden sm:inline">Digital Wallet</span>
               </TabsTrigger>
             </TabsList>
 
-            <Card>
+            <Card className="border-none shadow-lg bg-white bg-opacity-95 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <TabsContent value="bills">
                   <BillUploader onComplete={handleBillsComplete} />
@@ -185,7 +186,7 @@ const Onboarding: React.FC = () => {
                 <CardFooter className="border-t pt-6">
                   <Button 
                     onClick={handleSubmit} 
-                    className="w-full bg-bizblue-600 hover:bg-bizblue-700"
+                    className="w-full bg-gradient-to-r from-bizblue-600 to-bizblue-700 hover:from-bizblue-700 hover:to-bizblue-800 shadow-md"
                     disabled={processing}
                   >
                     {processing ? 'ML Model Processing Your Data...' : 'Run AI Analysis'}
