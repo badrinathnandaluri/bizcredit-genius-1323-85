@@ -82,12 +82,12 @@ const Loans: React.FC = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-lg font-semibold text-bizblue-900">
-                      {loan.purpose}
+                      {loan.purpose || `Loan #${loan.id.slice(0, 8)}`}
                     </CardTitle>
                     <CardDescription className="flex items-center gap-1 mt-1">
                       <span>Loan ID: {loan.id.slice(0, 8)}</span>
                       <span className="mx-1">•</span>
-                      <span>{new Date(loan.applicationDate).toLocaleDateString()}</span>
+                      <span>{new Date(loan.applicationDate || loan.createdAt).toLocaleDateString()}</span>
                     </CardDescription>
                   </div>
                   <Badge 
@@ -104,7 +104,7 @@ const Loans: React.FC = () => {
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-sm text-gray-500">Loan Amount</p>
-                    <p className="text-lg font-semibold">${loan.amount.toLocaleString()}</p>
+                    <p className="text-lg font-semibold">₹{loan.amount.toLocaleString()}</p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-gray-500">Interest Rate</p>
@@ -116,17 +116,17 @@ const Loans: React.FC = () => {
                   <div className="flex justify-between mb-1">
                     <span className="text-sm text-gray-500">Term Progress</span>
                     <span className="text-sm font-medium">
-                      {loan.termPaid}/{loan.term} months
+                      {loan.termPaid || 0}/{loan.term} months
                     </span>
                   </div>
-                  <Progress value={(loan.termPaid / loan.term) * 100} className="h-2" />
+                  <Progress value={((loan.termPaid || 0) / loan.term) * 100} className="h-2" />
                 </div>
                 
                 {loan.status === 'active' && (
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Next Payment</p>
                     <div className="flex justify-between items-center">
-                      <p className="font-medium">${loan.nextPaymentAmount?.toLocaleString() || '0'}</p>
+                      <p className="font-medium">₹{loan.nextPaymentAmount?.toLocaleString() || '0'}</p>
                       <p className="text-sm text-gray-500">{loan.nextPaymentDate || 'N/A'}</p>
                     </div>
                   </div>

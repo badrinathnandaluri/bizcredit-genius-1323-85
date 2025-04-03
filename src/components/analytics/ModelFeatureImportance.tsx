@@ -165,8 +165,8 @@ const ModelFeatureImportance: React.FC = () => {
                   <Tooltip content={renderTooltip} />
                   <Bar 
                     dataKey="value" 
-                    name="Importance" 
-                    fill={(data) => getCategoryColor(data.category)}
+                    name="Importance"
+                    fill="#4f46e5" 
                     radius={[0, 4, 4, 0]}
                   />
                 </BarChart>
@@ -206,8 +206,8 @@ const ModelFeatureImportance: React.FC = () => {
                   <Tooltip content={renderTooltip} />
                   <Bar 
                     dataKey="value" 
-                    name="Importance" 
-                    fill={(data) => getCategoryColor(data.category)}
+                    name="Importance"
+                    fill="#e11d48"
                     radius={[0, 4, 4, 0]}
                   />
                 </BarChart>

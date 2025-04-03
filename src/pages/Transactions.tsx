@@ -13,16 +13,7 @@ import {
 import { getUserTransactions } from '@/services/mockData';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
-interface Transaction {
-  id: string;
-  date: string;
-  description: string;
-  amount: number;
-  type: 'credit' | 'debit';
-  category: string;
-  account: string;
-}
+import { Transaction } from '@/types';
 
 const Transactions: React.FC = () => {
   const { user } = useAuth();
@@ -33,7 +24,13 @@ const Transactions: React.FC = () => {
   useEffect(() => {
     if (user) {
       const userTransactions = getUserTransactions(user.id);
-      setTransactions(userTransactions);
+      // Make sure the transactions have all required properties
+      const formattedTransactions = userTransactions.map(t => ({
+        ...t,
+        category: t.category || 'Other',
+        account: t.account || 'Main Account'
+      }));
+      setTransactions(formattedTransactions);
     }
   }, [user]);
   
@@ -89,7 +86,7 @@ const Transactions: React.FC = () => {
           <CardContent>
             <div className="flex items-center">
               <ArrowDown className="h-5 w-5 text-green-500 mr-2" />
-              <div className="text-2xl font-bold text-green-600">${totalCredit.toLocaleString()}</div>
+              <div className="text-2xl font-bold text-green-600">₹{totalCredit.toLocaleString()}</div>
             </div>
           </CardContent>
         </Card>
@@ -101,7 +98,7 @@ const Transactions: React.FC = () => {
           <CardContent>
             <div className="flex items-center">
               <ArrowUp className="h-5 w-5 text-red-500 mr-2" />
-              <div className="text-2xl font-bold text-red-600">${totalDebit.toLocaleString()}</div>
+              <div className="text-2xl font-bold text-red-600">₹{totalDebit.toLocaleString()}</div>
             </div>
           </CardContent>
         </Card>
@@ -188,7 +185,7 @@ const Transactions: React.FC = () => {
                     <td className={`py-3 text-right font-medium ${
                       transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'
                     }`}>
-                      {transaction.type === 'credit' ? '+' : '-'}${transaction.amount.toLocaleString()}
+                      {transaction.type === 'credit' ? '+' : '-'}₹{transaction.amount.toLocaleString()}
                     </td>
                   </tr>
                 ))}

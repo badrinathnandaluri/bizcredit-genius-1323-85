@@ -1,3 +1,4 @@
+
 export interface User {
   id: string;
   name: string;
@@ -46,6 +47,10 @@ export interface Loan {
   nextPaymentDate?: string;
   nextPaymentAmount?: number;
   remainingAmount?: number;
+  // Added missing properties
+  purpose?: string;
+  applicationDate?: string;
+  termPaid?: number; // Number of months already paid
 }
 
 export interface LoanApplication {
@@ -64,6 +69,9 @@ export interface Transaction {
   type: 'deposit' | 'withdrawal' | 'payment' | 'fee';
   description: string;
   date: string;
+  // Adding missing properties for the Transaction interface
+  category: string;
+  account: string;
 }
 
 export interface RiskAssessment {

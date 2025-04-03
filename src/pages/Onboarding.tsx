@@ -150,7 +150,7 @@ const Onboarding: React.FC = () => {
               <span className="text-sm font-medium">Progress</span>
               <span className="text-sm font-medium">{Math.round(progress)}%</span>
             </div>
-            <Progress value={progress} className="h-2 bg-gray-200 rounded-full" indicatorClassName="bg-gradient-to-r from-bizblue-500 to-bizblue-700" />
+            <Progress value={progress} className="h-2 bg-gray-200 rounded-full" />
           </div>
 
           <Tabs value={step} onValueChange={setStep} className="w-full">
