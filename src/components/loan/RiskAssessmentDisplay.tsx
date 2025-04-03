@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { RiskAssessment, RiskFactor } from '@/types';
 import { Progress } from '@/components/ui/progress';
+import { Brain, Zap, AlertTriangle } from 'lucide-react';
 
 interface RiskAssessmentDisplayProps {
   assessment: RiskAssessment;
@@ -26,10 +27,17 @@ const RiskAssessmentDisplay: React.FC<RiskAssessmentDisplayProps> = ({ assessmen
   return (
     <Card className="overflow-hidden">
       <CardHeader className="bg-gradient-to-r from-bizblue-700 to-bizblue-900 text-white">
-        <CardTitle className="text-xl">AI Risk Assessment</CardTitle>
-        <CardDescription className="text-white/80">
-          Based on your financial data and business profile
-        </CardDescription>
+        <div className="flex justify-between items-center">
+          <div>
+            <CardTitle className="text-xl">AI Risk Assessment</CardTitle>
+            <CardDescription className="text-white/80">
+              LSTM + Reinforcement Learning Analysis
+            </CardDescription>
+          </div>
+          <div className="bg-white/10 p-2 rounded-full">
+            <Brain className="h-6 w-6 text-white" />
+          </div>
+        </div>
       </CardHeader>
 
       <CardContent className="p-6 space-y-6">
@@ -42,14 +50,31 @@ const RiskAssessmentDisplay: React.FC<RiskAssessmentDisplayProps> = ({ assessmen
           </div>
           <h3 className="font-semibold text-lg">Credit Risk Score</h3>
           <p className="text-sm text-muted-foreground mt-1">
-            {assessment.score >= 80 && "Excellent risk profile"}
-            {assessment.score >= 60 && assessment.score < 80 && "Good risk profile"}
-            {assessment.score < 60 && "Higher risk profile"}
+            {assessment.score >= 80 && "Low default probability (LSTM prediction)"}
+            {assessment.score >= 60 && assessment.score < 80 && "Moderate default probability (LSTM prediction)"}
+            {assessment.score < 60 && "Higher default probability (LSTM prediction)"}
           </p>
         </div>
 
+        <div className="bg-gray-50 p-3 rounded-md border border-gray-100">
+          <div className="flex items-center gap-2 mb-2">
+            <Zap className="h-4 w-4 text-bizblue-600" />
+            <h4 className="font-medium text-sm">RL Model Optimization</h4>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <p className="text-xs text-muted-foreground">Optimal Interest Rate</p>
+              <p className="font-bold">{assessment.suggestedInterestRate}%</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Maximum Amount</p>
+              <p className="font-bold">${assessment.maxLoanAmount.toLocaleString()}</p>
+            </div>
+          </div>
+        </div>
+
         <div>
-          <h4 className="font-medium mb-2">Key Risk Factors</h4>
+          <h4 className="font-medium mb-2">LSTM-Identified Risk Factors</h4>
           <div className="space-y-3">
             {assessment.factors.map((factor, index) => (
               <RiskFactorItem key={index} factor={factor} />
@@ -58,19 +83,24 @@ const RiskAssessmentDisplay: React.FC<RiskAssessmentDisplayProps> = ({ assessmen
         </div>
 
         <div className="border-t pt-4">
-          <h4 className="font-medium mb-2">Recommendation</h4>
-          <div className="p-3 bg-blue-50 text-blue-800 rounded-md text-sm">
-            {assessment.recommendation}
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5" />
+            <div>
+              <h4 className="font-medium">AI Recommendation</h4>
+              <div className="p-3 bg-blue-50 text-blue-800 rounded-md text-sm mt-2">
+                {assessment.recommendation}
+              </div>
+            </div>
           </div>
 
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-muted-foreground">Maximum Amount</p>
+              <p className="text-sm text-muted-foreground">RL-Calculated Maximum</p>
               <p className="font-bold text-lg">${assessment.maxLoanAmount.toLocaleString()}</p>
             </div>
 
             <div>
-              <p className="text-sm text-muted-foreground">Suggested Interest Rate</p>
+              <p className="text-sm text-muted-foreground">Risk-Adjusted Rate</p>
               <p className="font-bold text-lg">{assessment.suggestedInterestRate}%</p>
             </div>
           </div>
