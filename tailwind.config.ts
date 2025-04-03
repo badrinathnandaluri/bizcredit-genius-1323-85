@@ -53,19 +53,19 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Custom colors for our lending platform
+				// Enhanced bizblue color palette
 				bizblue: {
-          			50: '#f0f7ff',
-          			100: '#e0eefe',
-          			200: '#bae0fd',
-          			300: '#7cc7fc',
-          			400: '#36aef8',
-          			500: '#0c96e6',
-          			600: '#0078c3',
-          			700: '#00609f',
-          			800: '#035183',
-          			900: '#0a446d',
-          			950: '#062b49',
+          			50: '#f0f8ff',
+          			100: '#deeeff',
+          			200: '#b9daff',
+          			300: '#7cc1fc',
+          			400: '#3aa7f5',
+          			500: '#0d8ddb',
+          			600: '#0073be',
+          			700: '#00599a',
+          			800: '#064a7d',
+          			900: '#0b3d63',
+          			950: '#072845',
         		},
 				amber: {
 					300: '#fcd34d',

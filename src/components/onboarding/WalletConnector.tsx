@@ -12,14 +12,14 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
 
-  // Updated with Indian digital payment methods
+  // Updated with Indian Digital Wallets
   const wallets = [
-    { id: 'phonepe', name: 'PhonePe', logo: '💳' },
-    { id: 'googlepay', name: 'Google Pay', logo: '💳' },
-    { id: 'paytm', name: 'Paytm', logo: '💳' },
-    { id: 'paypal', name: 'PayPal', logo: '💳' },
-    { id: 'amazonpay', name: 'Amazon Pay', logo: '💳' },
-    { id: 'bhim', name: 'BHIM UPI', logo: '💳' }
+    { id: 'phonepe', name: 'PhonePe', logo: '💸' },
+    { id: 'gpay', name: 'Google Pay', logo: '💳' },
+    { id: 'paytm', name: 'Paytm', logo: '💰' },
+    { id: 'paypal', name: 'PayPal', logo: '💲' },
+    { id: 'amazonpay', name: 'Amazon Pay', logo: '💵' },
+    { id: 'mobikwik', name: 'MobiKwik', logo: '💹' }
   ];
 
   const handleWalletSelect = (walletId: string) => {
@@ -31,11 +31,11 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
     
     setConnecting(true);
     try {
-      // Simulate API call to connect digital wallet
+      // Simulate API call to connect to wallet
       await new Promise(resolve => setTimeout(resolve, 2000));
       onComplete();
     } catch (error) {
-      console.error('Error connecting digital wallet:', error);
+      console.error('Error connecting to wallet:', error);
     } finally {
       setConnecting(false);
     }
@@ -46,8 +46,8 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
       <div>
         <h3 className="text-lg font-medium">Connect Your Digital Wallet</h3>
         <p className="text-sm text-muted-foreground">
-          Connect your digital payment wallet to provide additional transaction data.
-          This helps us better understand your business's cash flow patterns.
+          Connect your digital wallet to share payment history.
+          We use secure APIs and never store your login credentials.
         </p>
       </div>
 
@@ -74,11 +74,11 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
       <div className="flex flex-col space-y-2">
         <Button
           onClick={handleConnect}
-          className="bg-gradient-to-r from-bizblue-600 to-bizblue-700 hover:from-bizblue-700 hover:to-bizblue-800 mt-2 shadow-md"
+          className="professional-gradient hover:from-bizblue-800 hover:to-bizblue-700 mt-2 shadow-md"
           disabled={!selectedWallet || connecting}
         >
           {connecting ? (
-            <>Connecting Wallet...</>
+            <>Connecting to Wallet...</>
           ) : (
             <>
               <Wallet className="mr-2 h-4 w-4" />
@@ -87,7 +87,7 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onComplete }) => {
           )}
         </Button>
         <p className="text-xs text-gray-500 text-center">
-          We only collect transaction metadata, not your login credentials or personal information.
+          By connecting your digital wallet, you're allowing read-only access to your transaction history.
         </p>
       </div>
     </div>
