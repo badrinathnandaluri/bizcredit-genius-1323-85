@@ -53,14 +53,14 @@ const Dashboard: React.FC = () => {
         />
         <StatCard 
           title="Total Funded"
-          value={`$${mockDashboardStats.totalLoaned.toLocaleString()}`}
+          value={`₹${mockDashboardStats.totalLoaned.toLocaleString()}`}
           icon={<Wallet2 className="h-5 w-5" />}
           trend={{ value: 12, isPositive: true }}
           description="Total capital funded to date"
         />
         <StatCard 
           title="Available Credit"
-          value={`$${mockDashboardStats.availableCredit.toLocaleString()}`}
+          value={`₹${mockDashboardStats.availableCredit.toLocaleString()}`}
           icon={<TrendingUp className="h-5 w-5" />}
           trend={{ value: 5, isPositive: true }}
         />
@@ -97,3 +97,4 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+

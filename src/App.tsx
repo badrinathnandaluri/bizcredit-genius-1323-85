@@ -19,6 +19,7 @@ import Transactions from "./pages/Transactions";
 import Analytics from "./pages/Analytics";
 import AdminLoans from "./pages/AdminLoans";
 import NotFound from "./pages/NotFound";
+import Settings from "./pages/Settings";  // Import the new Settings page
 
 // Layout
 import MainLayout from "./components/layout/MainLayout";
@@ -46,7 +47,7 @@ const App = () => (
               <Route path="/loans" element={<Loans />} />
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/analytics" element={<Analytics />} />
-              <Route path="/settings" element={<Dashboard />} />
+              <Route path="/settings" element={<Settings />} />  {/* Updated route */}
               <Route path="/profile" element={<Dashboard />} />
               
               {/* Admin Routes */}
@@ -63,3 +64,4 @@ const App = () => (
 );
 
 export default App;
+
